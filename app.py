@@ -36,10 +36,12 @@ def register():
 @app.route("/create", methods=["POST"])
 def create():
     username = request.form["username"]
-    if not username or len(username) > 16:
-        abort(403)
+    if not username or len(username) < 4 or len(username) > 16:
+        return render_template("username_length_error.html")
     password1 = request.form["password1"]
     password2 = request.form["password2"]
+    if not password1 or len(password1) < 4 or len(password1) > 16:
+        return render_template("password_length_error.html")
     if password1 != password2:
         return render_template("password_match_error.html")
     password_hash = generate_password_hash(password1)
@@ -57,6 +59,10 @@ def login():
     username = request.form["username"]
     password = request.form["password"]
     
+    if not username or len(username) < 4 or len(username) > 16:
+        return render_template("username_or_password_error.html")
+    if not password or len(password) < 4 or len(password) > 16:
+        return render_template("username_or_password_error.html")    
     sql = "SELECT password_hash FROM users WHERE username = ?"
     password_hash = db.query(sql, [username])[0][0]
 
