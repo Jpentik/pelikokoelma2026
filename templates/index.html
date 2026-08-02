@@ -11,6 +11,19 @@
     Olet kirjautunut nimellä {{ session.username }}
   </p>
   <p>
+    Pelien määrä: {{ count }}
+  </p>
+  <hr />
+  {% for game in games %}
+  <p>
+    {{ game[0] }}
+  </p>
+  <hr />
+  {% endfor %}
+  <p>
+    <a href="/new">Lisää peli</a>
+  </p>
+  <p>
     <a href="/logout">Kirjaudu ulos</a>
   </p>
   {% else %}

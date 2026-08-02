@@ -10,7 +10,24 @@ app.secret_key = config.secret_key
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    db = sqlite3.connect("database.db")
+    games = db.execute("SELECT content FROM games").fetchall()
+    db.close()
+    count = len(games)
+    return render_template("index.html", count=count, games=games)
+
+@app.route("/new")
+def new():
+    return render_template("new.html")
+
+@app.route("/send", methods=["POST"])
+def send():
+    content = request.form["content"]
+    db = sqlite3.connect("database.db")
+    db.execute("INSERT INTO games (content) VALUES (?)", [content])
+    db.commit()
+    db.close()
+    return redirect("/")
 
 @app.route("/register")
 def register():
