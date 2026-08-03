@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Pelin muokkaus</title>
+</head>
+
+<body>
+  <h1>Pelin muokkaus</h1>
+  <form action="/update_game" method="post">
+    <p>
+      Pelin tiedot: <br />
+      <textarea name="content" rows="3" cols="40">{{ game.content }}</textarea>
+    </p>
+    <p>
+      <input type="hidden" name="game_id" value="{{ game.id}}" />
+      <input type="submit" value="Päivitä pelin tiedot" />
+    </p>
+  </form>
+</body>
+
+</html>

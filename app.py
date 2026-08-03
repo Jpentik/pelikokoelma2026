@@ -30,6 +30,19 @@ def create_game():
     games.add_game(content, user_id)
     return redirect("/")
 
+@app.route("/edit_game/<int:game_id>", methods=["GET", "POST"])
+def edit_game(game_id):
+    game = games.get_game(game_id)
+    return render_template("edit_game.html", game=game)
+
+@app.route("/update_game", methods=["POST"])
+def update_game():
+    content = request.form["content"]
+    game_id = request.form["game_id"]
+    user_id = session["user_id"]
+    games.update_game(game_id, content)
+    return redirect("/game/" + str(game_id))
+
 @app.route("/register")
 def register():
     return render_template("register.html")
