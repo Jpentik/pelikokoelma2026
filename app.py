@@ -4,6 +4,7 @@ from flask import abort, redirect, render_template, request, session
 from werkzeug.security import check_password_hash, generate_password_hash
 import db
 import config
+import games
 
 app = Flask(__name__)
 app.secret_key = config.secret_key
@@ -24,11 +25,7 @@ def new():
 def create_game():
     content = request.form["content"]
     user_id = session["user_id"]
-    db = sqlite3.connect("database.db")
-    sql = """INSERT INTO games (content, user_id) VALUES (?, ?)"""
-    db.execute(sql, [content, user_id])
-    db.commit()
-    db.close()
+    games.add_game(content, user_id)
     return redirect("/")
 
 @app.route("/register")
