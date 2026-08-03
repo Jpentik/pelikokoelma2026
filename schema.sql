@@ -13,4 +13,5 @@ CREATE TABLE collections (
 CREATE TABLE games (
     id INTEGER PRIMARY KEY,
     content TEXT
+    user_id INTEGER REFERENCES users
 );
