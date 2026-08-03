@@ -20,5 +20,9 @@ def get_game(game_id):
     return db.query(sql, [game_id])[0]
 
 def update_game(game_id, content):
-    sql = """UPDATE games SET content = ? WHERE id = ?"""
+    sql = "UPDATE games SET content = ? WHERE id = ?"
     db.execute(sql, [content, game_id])
+
+def remove_game(game_id):
+    sql = "DELETE FROM games  WHERE id = ?"
+    db.execute(sql, [game_id])

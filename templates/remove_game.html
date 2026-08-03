@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Pelin poisto</title>
+</head>
+
+<body>
+  <h1>Pelin poisto</h1>
+  <p>Peli: {{ game.content }}</p>
+  Haluatko varmasti poistaa pelin?
+  <form action="/remove_game/{{ game.id}}" method="post">
+     <input type="submit" name="remove" value="Poista peli">
+     <input type="submit" name="back" value="Takaisin">
+  </form>
+</body>
+
+</html>
