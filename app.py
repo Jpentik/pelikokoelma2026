@@ -20,11 +20,13 @@ def index():
 def new():
     return render_template("new.html")
 
-@app.route("/send", methods=["POST"])
-def send():
+@app.route("/create_game", methods=["POST"])
+def create_game():
     content = request.form["content"]
+    user_id = session["user_id"]
     db = sqlite3.connect("database.db")
-    db.execute("INSERT INTO games (content) VALUES (?)", [content])
+    sql = """INSERT INTO games (content, user_id) VALUES (?, ?)"""
+    db.execute(sql, [content, user_id])
     db.commit()
     db.close()
     return redirect("/")
@@ -54,19 +56,23 @@ def create():
 
     return render_template("user_created.html")
 
-@app.route("/login", methods=["POST"])
+@app.route("/login", methods=["GET", "POST"])
 def login():
-    username = request.form["username"]
-    password = request.form["password"]
+    if request.method == "GET":
+        return render_template(index.html)
     
-    if not username or len(username) < 4 or len(username) > 16:
-        return render_template("username_or_password_error.html")
-    if not password or len(password) < 4 or len(password) > 16:
-        return render_template("username_or_password_error.html")    
-    sql = "SELECT id, password_hash FROM users WHERE username = ?"
-    result = db.query(sql, [username])[0]
-    user_id = result["id"]
-    password_hash = result["password_hash"]
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+    
+        if not username or len(username) < 4 or len(username) > 16:
+            return render_template("username_or_password_error.html")
+        if not password or len(password) < 4 or len(password) > 16:
+            return render_template("username_or_password_error.html")    
+        sql = "SELECT id, password_hash FROM users WHERE username = ?"
+        result = db.query(sql, [username])[0]
+        user_id = result["id"]
+        password_hash = result["password_hash"]
 
     if check_password_hash(password_hash, password):
         session["user_id"] = user_id
