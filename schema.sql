@@ -4,12 +4,6 @@ CREATE TABLE users (
     password_hash TEXT
 );
 
-CREATE TABLE collections (
-    id INTEGER PRIMARY KEY,
-    title TEXT,
-    user_id INTEGER REFERENCES users
-);
-
 CREATE TABLE games (
     id INTEGER PRIMARY KEY,
     content TEXT,
