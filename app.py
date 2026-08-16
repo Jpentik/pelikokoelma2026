@@ -43,20 +43,26 @@ def create_game():
 @app.route("/edit_game/<int:game_id>", methods=["GET", "POST"])
 def edit_game(game_id):
     game = games.get_game(game_id)
+    if game["user_id"] != session["user_id"]:
+        abort(403)
     return render_template("edit_game.html", game=game)
 
 @app.route("/update_game", methods=["POST"])
 def update_game():
     content = request.form["content"]
     game_id = request.form["game_id"]
-    user_id = session["user_id"]
+    game = games.get_game(game_id)
+    if game["user_id"] != session["user_id"]:
+        abort(403)
     games.update_game(game_id, content)
     return redirect("/game/" + str(game_id))
 
 @app.route("/remove_game/<int:game_id>", methods=["GET", "POST"])
 def remove_game(game_id):
+    game = games.get_game(game_id)
+    if game["user_id"] != session["user_id"]:
+        abort(403)
     if request.method == "GET":
-        game = games.get_game(game_id)
         return render_template("remove_game.html", game=game)
     if request.method == "POST":
         if "remove" in request.form:
