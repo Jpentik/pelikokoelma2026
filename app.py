@@ -9,6 +9,10 @@ import games
 app = Flask(__name__)
 app.secret_key = config.secret_key
 
+def require_login():
+    if "user_id" not in session:
+        abort(403)
+
 @app.route("/")
 def index():
     all_games = games.get_games()
@@ -33,10 +37,12 @@ def show_game(game_id):
 
 @app.route("/new")
 def new():
+    require_login()
     return render_template("new.html")
 
 @app.route("/create_game", methods=["POST"])
 def create_game():
+    require_login()
     content = request.form["content"]
     user_id = session["user_id"]
     games.add_game(content, user_id)
@@ -44,6 +50,7 @@ def create_game():
 
 @app.route("/edit_game/<int:game_id>", methods=["GET", "POST"])
 def edit_game(game_id):
+    require_login()
     game = games.get_game(game_id)
     if not game:
         abort(404)
@@ -53,6 +60,7 @@ def edit_game(game_id):
 
 @app.route("/update_game", methods=["POST"])
 def update_game():
+    require_login()
     content = request.form["content"]
     game_id = request.form["game_id"]
     game = games.get_game(game_id)
@@ -65,6 +73,7 @@ def update_game():
 
 @app.route("/remove_game/<int:game_id>", methods=["GET", "POST"])
 def remove_game(game_id):
+    require_login()
     game = games.get_game(game_id)
     if not game:
         abort(404)
@@ -131,6 +140,7 @@ def login():
 
 @app.route("/logout")
 def logout():
-    del session["user_id"]
-    del session["username"]
+    if "user_id" in session:
+        del session["user_id"]
+        del session["username"]
     return redirect("/")
