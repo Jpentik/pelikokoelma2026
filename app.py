@@ -68,6 +68,8 @@ def update_game():
     game = games.get_game(game_id)
     if not game:
         abort(404)
+    if not content or len(content) > 100:
+        abort(403)
     if game["user_id"] != session["user_id"]:
         abort(403)
     games.update_game(game_id, content)
