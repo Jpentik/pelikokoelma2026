@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Etsi peli</title>
+</head>
+
+<body>
+  <h1>Etsi peli</h1>
+  <form action="/find_game" method="get">
+  <p>
+    Hakusana: <input type="text" name="query" value="{{ query }}">
+  </p>
+  <input type="submit" value="Lähetä">
+  </form>
+
+  <p>
+    <a href="/">Palaa takaisin</a>
+  </p>
+
+  {%if query %}
+  <h2> Tulokset:</h2>
+  {% endif %}
+  <ul>
+    {% for game in results %}
+    <li><a href="/game/{{ game.id }}">{{ game.content }}</a></li>
+    {% endfor %}
+  </ul>
+</body>
+
+</html>

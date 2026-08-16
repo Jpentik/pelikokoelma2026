@@ -26,3 +26,10 @@ def update_game(game_id, content):
 def remove_game(game_id):
     sql = "DELETE FROM games  WHERE id = ?"
     db.execute(sql, [game_id])
+
+def find_games(query):
+    sql = """SELECT id, content
+    FROM games
+    WHERE content LIKE ?
+    ORDER BY id DESC"""
+    return db.query(sql, ["%" + query + "%"])
