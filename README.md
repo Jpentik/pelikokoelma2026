@@ -4,7 +4,7 @@
 - Käyttäjä pystyy lisäämään, muokkaamaan ja poistamaan pelejä. (Tehty)
 - Käyttäjä näkee sovellukseen lisätyt pelit. (Tehty)
 - Käyttäjä pystyy etsimään pelejä hakusanalla. (Tehty)
-- Sovelluksessa on käyttäjäsivut, jotka näyttävät jokaisesta käyttäjästä tilastoja ja käyttäjän lisäämät pelit.
+- Sovelluksessa on käyttäjäsivut, jotka näyttävät jokaisesta käyttäjästä tilastoja ja käyttäjän lisäämät pelit. (Tehty)
 - Käyttäjä pystyy valitsemaan pelille yhden tai useamman lisätiedon/luokittelun (esim. pelikonsoli, kunto, tuotekoodi, fyysinen/digitaalinen, halutaan ostaa/myydä)
 - Käyttäjä pystyy lähettämään viestejä toisille käyttäjille.
 - Käyttäjä pystyy lukemaan saamansa viestit ja vastaamaan viesteihin.
