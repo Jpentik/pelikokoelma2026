@@ -44,6 +44,8 @@ def new():
 def create_game():
     require_login()
     content = request.form["content"]
+    if not content or len(content) > 100:
+        abort(403)
     user_id = session["user_id"]
     games.add_game(content, user_id)
     return redirect("/")
