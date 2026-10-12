@@ -8,7 +8,7 @@
 - Käyttäjä pystyy valitsemaan pelille yhden tai useamman lisätiedon/luokittelun (esim. pelikonsoli, kunto, tuotekoodi, fyysinen/digitaalinen, halutaan ostaa/myydä)
 - Käyttäjä voi lisätä toissijaisena tietokohteena kuvia omiin peleihin.
 
-Asennus- ja käyttöohjeet 20.9.2026
+Asennus- ja käyttöohjeet 12.10.2026
 
 - Juurihakemistossa virtuaaliympäristön luonti:
 `python3 -m venv venv`
