@@ -33,6 +33,7 @@ def remove_game(game_id):
 def find_games(query):
     sql = """SELECT id, description
     FROM games
-    WHERE description LIKE ?
+    WHERE description LIKE ? OR platform LIKE ? or condition LIKE ?
     ORDER BY id DESC"""
-    return db.query(sql, ["%" + query + "%"])
+    like = "%" + query + "%"
+    return db.query(sql, [like, like, like])
