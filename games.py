@@ -1,20 +1,20 @@
 import sqlite3
 import db
 
-def add_game(content, user_id):
+def add_game(description, platform, condition, user_id):
     db = sqlite3.connect("database.db")
-    sql = """INSERT INTO games (content, user_id) VALUES (?, ?)"""
-    db.execute(sql, [content, user_id])
+    sql = """INSERT INTO games (description, platform, condition, user_id) VALUES (?, ?, ?, ?)"""
+    db.execute(sql, [description, platform, condition, user_id])
     db.commit()
     db.close()
 
 def get_games():
-    sql = "SELECT id, content FROM games ORDER BY id DESC"
+    sql = "SELECT id, description FROM games ORDER BY id DESC"
     return db.query(sql)
 
 def get_game(game_id):
     sql = """SELECT games.id, 
-                    games.content, 
+                    games.description, 
                     users.username, 
                     users.id user_id
                     FROM games, users
@@ -23,17 +23,17 @@ def get_game(game_id):
     result = db.query(sql, [game_id])
     return result[0] if result else None
 
-def update_game(game_id, content):
-    sql = "UPDATE games SET content = ? WHERE id = ?"
-    db.execute(sql, [content, game_id])
+def update_game(game_id, description):
+    sql = "UPDATE games SET description = ? WHERE id = ?"
+    db.execute(sql, [description, game_id])
 
 def remove_game(game_id):
     sql = "DELETE FROM games  WHERE id = ?"
     db.execute(sql, [game_id])
 
 def find_games(query):
-    sql = """SELECT id, content
+    sql = """SELECT id, description
     FROM games
-    WHERE content LIKE ?
+    WHERE description LIKE ?
     ORDER BY id DESC"""
     return db.query(sql, ["%" + query + "%"])

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Pelin lisäys</title>
+</head>
+
+<body>
+  <form action="/create_game" method="post">
+    <p>
+      Uusi peli: <br />
+      <textarea name="description" rows="3" cols="40" maxlength="100" required></textarea>
+    </p>
+    <p>
+      Alusta: <br />
+      <input type="text" name="platform" size ="15" />
+    </p>
+    <p>
+      Kunto: <br />
+      <input type="text" name="condition" size ="15" />
+    </p>
+    <p>
+      <input type="submit" value="Lähetä" />
+    </p>
+  </form>
+</body>
+
+</html>

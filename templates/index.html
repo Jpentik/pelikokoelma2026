@@ -16,7 +16,7 @@
   <hr />
   {% for game in games %}
   <ul>
-    <li><a href="/game/{{ game.id }}">{{ game.content }}</li>
+    <li><a href="/game/{{ game.id }}">{{ game.description }}</li>
   </ul>
   {% endfor %}
     <hr />
@@ -24,7 +24,7 @@
     <a href="/user/{{ session.user_id }}"">Käyttäjäsivusi</a>
   </p>
   <p>
-    <a href="/new">Lisää peli</a>
+    <a href="/new_game">Lisää peli</a>
   </p>
   <p>
     <a href="/find_game">Etsi peli</a>

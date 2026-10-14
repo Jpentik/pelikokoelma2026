@@ -44,19 +44,21 @@ def show_game(game_id):
         abort(404)
     return render_template("show_game.html", game=game)
 
-@app.route("/new")
-def new():
+@app.route("/new_game")
+def new_game():
     require_login()
-    return render_template("new.html")
+    return render_template("new_game.html")
 
 @app.route("/create_game", methods=["POST"])
 def create_game():
     require_login()
-    content = request.form["content"]
-    if not content or len(content) > 100:
+    description = request.form["description"]
+    if not description or len(description) > 100:
         abort(403)
+    platform = request.form["platform"]
+    condition = request.form["condition"]
     user_id = session["user_id"]
-    games.add_game(content, user_id)
+    games.add_game(description, platform, condition, user_id)
     return redirect("/")
 
 @app.route("/edit_game/<int:game_id>", methods=["GET", "POST"])
@@ -72,16 +74,16 @@ def edit_game(game_id):
 @app.route("/update_game", methods=["POST"])
 def update_game():
     require_login()
-    content = request.form["content"]
+    description = request.form["description"]
     game_id = request.form["game_id"]
     game = games.get_game(game_id)
     if not game:
         abort(404)
-    if not content or len(content) > 100:
+    if not description or len(description) > 100:
         abort(403)
     if game["user_id"] != session["user_id"]:
         abort(403)
-    games.update_game(game_id, content)
+    games.update_game(game_id, description)
     return redirect("/game/" + str(game_id))
 
 @app.route("/remove_game/<int:game_id>", methods=["GET", "POST"])

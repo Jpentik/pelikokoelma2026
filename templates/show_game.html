@@ -2,11 +2,11 @@
 <html>
 
 <head>
-  <title>{{ game.content}}</title>
+  <title>{{ game.description}}</title>
 </head>
 
 <body>
-    <h1>{{ game.content}}</h1>
+    <h1>{{ game.description}}</h1>
     {% if session.user_id == game.user_id %}
   <p>
     <a href="/edit_game/{{ game.id }}">Muokkaa</a>
