@@ -11,7 +11,9 @@ def get_games():
 
 def get_game(game_id):
     sql = """SELECT games.id, 
-                    games.description, 
+                    games.description,
+                    games.platform,
+                    games.condition, 
                     users.username, 
                     users.id user_id
                     FROM games, users

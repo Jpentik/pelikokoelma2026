@@ -6,7 +6,13 @@
 </head>
 
 <body>
-    <h1>{{ game.description}}</h1>
+    <h1>{{ game.description }}</h1>
+    <p>
+      {{ game.platform }}
+    </p>
+    <p>
+      {{ game.condition }}
+    </p>
     {% if session.user_id == game.user_id %}
   <p>
     <a href="/edit_game/{{ game.id }}">Muokkaa</a>
