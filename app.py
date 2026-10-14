@@ -57,7 +57,7 @@ def create_game():
         abort(403)
     if len(platform) > 20:
         abort(403)
-    if not condition or len(condition) > 20:
+    if len(condition) > 20:
         abort(403)
     platform = request.form["platform"]
     condition = request.form["condition"]
@@ -91,7 +91,7 @@ def update_game():
         abort(403)
     if len(platform) > 20:
         abort(403)
-    if not condition or len(condition) > 20:
+    if len(condition) > 20:
         abort(403)
     games.update_game(game_id, description, platform, condition)
     return redirect("/game/" + str(game_id))
