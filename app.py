@@ -55,6 +55,10 @@ def create_game():
     description = request.form["description"]
     if not description or len(description) > 100:
         abort(403)
+    if len(platform) > 20:
+        abort(403)
+    if not condition or len(condition) > 20:
+        abort(403)
     platform = request.form["platform"]
     condition = request.form["condition"]
     user_id = session["user_id"]
@@ -81,9 +85,13 @@ def update_game():
     game = games.get_game(game_id)
     if not game:
         abort(404)
+    if game["user_id"] != session["user_id"]:
+        abort(403)
     if not description or len(description) > 100:
         abort(403)
-    if game["user_id"] != session["user_id"]:
+    if len(platform) > 20:
+        abort(403)
+    if not condition or len(condition) > 20:
         abort(403)
     games.update_game(game_id, description, platform, condition)
     return redirect("/game/" + str(game_id))
