@@ -14,11 +14,11 @@
     </p>
     <p>
       Alusta: <br />
-      <input type="text" name="platform" size ="15" value="{{ game.platform }}"/>
+      <input type="text" name="platform" maxlength="20" size ="20" value="{{ game.platform }}"/>
     </p>
     <p>
       Kunto: <br />
-      <input type="text" name="condition" size ="15" value="{{ game.condition }}"/>
+      <input type="text" name="condition" maxlength="20" size ="20" value="{{ game.condition }}"/>
     </p>
     <p>
       <input type="hidden" name="game_id" value="{{ game.id }}" />
