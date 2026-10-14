@@ -20,12 +20,12 @@
 
   {%if query %}
   <h2> Tulokset:</h2>
-  {% endif %}
   <ul>
     {% for game in results %}
-    <li><a href="/game/{{ game.id }}">{{ game.content }}</a></li>
+    <li><a href="/game/{{ game.id }}">{{ game.description }}</a></li>
     {% endfor %}
   </ul>
+  {% endif %}
 </body>
 
 </html>
