@@ -53,6 +53,8 @@ def new_game():
 def create_game():
     require_login()
     description = request.form["description"]
+    platform = request.form["platform"]
+    condition= request.form["condition"]
     if not description or len(description) > 100:
         abort(403)
     if len(platform) > 20:
