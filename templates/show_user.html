@@ -13,7 +13,7 @@
     <h2>Pelit:</h2>
     <ul>
         {% for game in games %}
-        <li><a href="/game/{{ game.id }}">{{ game.content }}</a></li>
+        <li><a href="/game/{{ game.id }}">{{ game.description }}</a></li>
         {% endfor %}
     </ul>
     <p>
