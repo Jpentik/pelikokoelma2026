@@ -61,8 +61,6 @@ def create_game():
         abort(403)
     if len(condition) > 20:
         abort(403)
-    platform = request.form["platform"]
-    condition = request.form["condition"]
     user_id = session["user_id"]
     games.add_game(description, platform, condition, user_id)
     return redirect("/")
