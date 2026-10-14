@@ -2,11 +2,8 @@ import sqlite3
 import db
 
 def add_game(description, platform, condition, user_id):
-    db = sqlite3.connect("database.db")
     sql = """INSERT INTO games (description, platform, condition, user_id) VALUES (?, ?, ?, ?)"""
     db.execute(sql, [description, platform, condition, user_id])
-    db.commit()
-    db.close()
 
 def get_games():
     sql = "SELECT id, description FROM games ORDER BY id DESC"
