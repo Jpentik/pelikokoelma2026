@@ -75,6 +75,8 @@ def edit_game(game_id):
 def update_game():
     require_login()
     description = request.form["description"]
+    platform = request.form["platform"]
+    condition = request.form["condition"]
     game_id = request.form["game_id"]
     game = games.get_game(game_id)
     if not game:
@@ -83,7 +85,7 @@ def update_game():
         abort(403)
     if game["user_id"] != session["user_id"]:
         abort(403)
-    games.update_game(game_id, description)
+    games.update_game(game_id, description, platform, condition)
     return redirect("/game/" + str(game_id))
 
 @app.route("/remove_game/<int:game_id>", methods=["GET", "POST"])

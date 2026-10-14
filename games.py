@@ -22,9 +22,9 @@ def get_game(game_id):
     result = db.query(sql, [game_id])
     return result[0] if result else None
 
-def update_game(game_id, description):
-    sql = "UPDATE games SET description = ? WHERE id = ?"
-    db.execute(sql, [description, game_id])
+def update_game(game_id, description, platform, condition):
+    sql = "UPDATE games SET description = ?, platform = ?, condition = ? WHERE id = ?"
+    db.execute(sql, [description, platform, condition, game_id])
 
 def remove_game(game_id):
     sql = "DELETE FROM games  WHERE id = ?"
