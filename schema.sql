@@ -6,6 +6,8 @@ CREATE TABLE users (
 
 CREATE TABLE games (
     id INTEGER PRIMARY KEY,
-    content TEXT,
+    description TEXT,
+    platform TEXT,
+    condition TEXT,
     user_id INTEGER REFERENCES users
 );
